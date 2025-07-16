@@ -32,9 +32,29 @@ int main() {
     }
     printf("%d\n", minLength);
     int countTuMin = 0;
+
+
+    char checkTu[1000][1000];
+    int cntcheckTu = 0;
     for (i = 0; i < cnt; i++) {
-      if(strlen(ds[i].val) == minLength) countTuMin += ds[i].count;
+      if(strlen(ds[i].val) == minLength) {
+        int check = 1, j;
+        for (j = 0; j < cntcheckTu; j++) {
+          if (strcmp(ds[i].val, checkTu[j]) == 0) {
+            check = 0;
+            break;
+          }
+        }
+        if (check) {
+          strcpy(checkTu[cntcheckTu++], ds[i].val);
+          countTuMin++;
+        }
+      }
     }
+
+
+
+
     printf("%d\n", countTuMin);
     for (i = 0; i < cnt; i++) {
         countTuMin += ds[i].count;
